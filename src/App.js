@@ -1,5 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
-//import react from "react";
+import React from "react"; // Optional to write.
 
 function App() {
   const expenses = [
@@ -32,12 +32,12 @@ function App() {
   );
 
   // Under the hood code for above JSX Format.
-  // return react.createElement(
+  // return React.createElement(
   //   "div",
   //   {},
-  //   react.createElement("h2", {}, "Let's get started!"),
-  //   react.createElement("p", {}, "This is also visible!!"),
-  //   react.createElement(Expenses, {expenses: expenses})
+  //   React.createElement("h2", {}, "Let's get started!"),
+  //   React.createElement("p", {}, "This is also visible!!"),
+  //   React.createElement(Expenses, {expenses: expenses})
   // );
 }
 

@@ -1,7 +1,6 @@
 import Expenses from "./components/Expenses/Expenses";
 import React, { useState } from "react"; // Optional to write.
 import NewExpense from "./components/NewExpense/NewExpense";
-import AddExpenses from "./components/NewExpense/AddExpenses";
 
 const dummyExpenses = [
   {
@@ -27,41 +26,17 @@ const dummyExpenses = [
 
 function App() {
   const [expenses, setExpenses] = useState(dummyExpenses);
-  const [showExpenseForm, setShowExpenseForm] = useState("0");
   const onReceivngExpenseData = (expenseData) => {
     setExpenses((prevExpenses) => {
       return [expenseData, ...prevExpenses];
     });
   };
 
-  const AddExpensesClickHandler = (isClicked) => {
-    setShowExpenseForm(isClicked);
-  };
-
-  const onReceivngCancelClickResponse = (isClicked) => {
-    setShowExpenseForm(isClicked);
-  };
-
-  let expenseFormTabContent = (
-    <div>
-      <AddExpenses onAddExpensesClick={AddExpensesClickHandler} />
-    </div>
-  );
-
-  if (showExpenseForm === "1") {
-    expenseFormTabContent = (
-      <div>
-        <NewExpense
-          onReceivingExpenseData={onReceivngExpenseData}
-          sendCancelClickResponse={onReceivngCancelClickResponse}
-        />
-      </div>
-    );
-  }
-
   return (
     <div>
-      {expenseFormTabContent}
+      <NewExpense
+          onReceivingExpenseData={onReceivngExpenseData}
+        />
       <Expenses expenses={expenses} />
     </div>
   );

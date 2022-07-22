@@ -3,6 +3,7 @@ import ExpensesList from "./ExpensesList";
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpenseChart from "./ExpenseChart";
 
 function Expenses(props) {
   const { expenses } = props;
@@ -22,6 +23,7 @@ function Expenses(props) {
           defaultYear={year}
           onDropdownSelectHandler={onDropdownSelectHandler}
         />
+        <ExpenseChart expenses={filteredExpenses} />
         <ExpensesList items={filteredExpenses} />
       </Card>
     </div>
@@ -29,4 +31,3 @@ function Expenses(props) {
 }
 
 export default Expenses;
-

@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 function ExpenseForm(props) {
   const [titleAdded, setTitleAdded] = useState("");
-  const [dateAdded, setDateAdded] = useState("");
+  const [dateAdded, setDateAdded] = useState(new Date());
   const [amountAdded, setAmountAdded] = useState("");
-
-  const cancelClickHandler = (event)=>{
-    event.preventDefault();
-    props.onCancelClick("0");
-  }
 
   const titleChangeEventHandler = (event) => {
     setTitleAdded(event.target.value);
@@ -23,21 +18,27 @@ function ExpenseForm(props) {
     event.preventDefault();
     const expenseData = {
       title: titleAdded,
-      amount: amountAdded,
+      amount: +amountAdded,
       date: new Date(dateAdded),
     };
-    
+
     props.onSaveExpense(expenseData);
     setTitleAdded("");
     setAmountAdded("");
     setDateAdded("");
+
+    props.CancelClickHandler();
   };
   return (
     <form onSubmit={formSubmitEventHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeEventHandler} value={titleAdded}/>
+          <input
+            type="text"
+            onChange={titleChangeEventHandler}
+            value={titleAdded}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -61,7 +62,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className=".new-expense__actions">
-        <button onClick={cancelClickHandler}>Cancel</button>
+        <button onClick={props.CancelClickHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
